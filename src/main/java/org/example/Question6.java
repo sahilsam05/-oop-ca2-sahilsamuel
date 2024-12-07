@@ -1,5 +1,8 @@
 package org.example;
 
+// Reference
+// https://github.com/logued/oop-priority-queue-demo/blob/master/src/main/java/dkit/oop/MainApp.java
+
 import java.util.PriorityQueue;
 
 /**
@@ -11,21 +14,30 @@ public class Question6      // Flight take-off (Queue)
 {
     public static void main(String[] args)
     {
-
+        takeoff("TK1212");
+        land("TK131");
     }
 
-    public void takeoff(String flightCode) {
-        takeoffQueue.add(new Plane(flightCode));
+
+
+    public static void takeoff(String flightCode)
+    {
+        PriorityQueue<String> takeoffQueue = new PriorityQueue<>();
+        takeoffQueue.add(flightCode);
         System.out.println(flightCode + " is queued for takeoff.");
     }
 
-    public void land(String flightCode) {
-        landingQueue.add(new Plane(flightCode));
+    public static void land(String flightCode)
+    {
+        PriorityQueue<String> landingQueue = new PriorityQueue<>();
+
+        landingQueue.add(flightCode);
         System.out.println(flightCode + " is queued for landing.");
     }
 
     public void next() {
-        if (!landingQueue.isEmpty()) {
+        if (land(""))
+        {
             Plane flight = landingQueue.poll();
             System.out.println("Landing " + flight.getFlightCode());
         } else if (!takeoffQueue.isEmpty()) {
@@ -34,4 +46,5 @@ public class Question6      // Flight take-off (Queue)
         } else {
             System.out.println("No planes waiting.");
         }
+    }
 }
