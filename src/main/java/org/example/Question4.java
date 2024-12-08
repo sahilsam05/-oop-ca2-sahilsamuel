@@ -4,14 +4,12 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Name:
- * Class Group:
+ * Name: Sahil Samuel
+ * Class Group: SD2A
  */
 
 public class Question4  // Flood Fill (Stack, 2D Array)
 {
-    static final int ROWS = 5;
-    static final int COLUMNS = 5;
 
     public static void main(String[] args) {
         System.out.println("Question 4. Floodfill algorithm.");
