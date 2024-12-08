@@ -5,7 +5,6 @@ package org.example;
 // https://github.com/logued/oop-queue-linkedlist/blob/master/src/main/java/dkit/oop/App.java
 
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -17,38 +16,45 @@ public class Question6      // Flight take-off (Queue)
 {
 
     Queue<String> takeoffQueue = new LinkedList<>();
+    Queue<String> landingQueue = new LinkedList<>();
+
     public static void main(String[] args)
     {
-        takeoff("TK1212");
-        land("TK131");
+        Question6 airport = new Question6();
+        airport.takeoff("Flight - 100");
+        airport.takeoff("Flight - 200");
+        airport.land("Flight-320");
+        airport.takeoff("Flight - E104");
+        airport.next();
+        airport.next();
     }
 
 
 
-    public static void takeoff(String flightCode)
+    public void takeoff(String flightCode)
     {
-        PriorityQueue<String> takeoffQueue = new PriorityQueue<>();
         takeoffQueue.add(flightCode);
         System.out.println(flightCode + " is queued for takeoff.");
     }
 
-    public static void land(String flightCode)
+    public void land(String flightCode)
     {
-        PriorityQueue<String> landingQueue = new PriorityQueue<>();
-
         landingQueue.add(flightCode);
         System.out.println(flightCode + " is queued for landing.");
     }
 
     public void next() {
-        if (land(""))
+        if (landingQueue.isEmpty())
         {
-            Plane flight = landingQueue.poll();
-            System.out.println("Landing " + flight.getFlightCode());
-        } else if (!takeoffQueue.isEmpty()) {
-            Plane flight = takeoffQueue.poll();
-            System.out.println("Taking off " + flight.getFlightCode());
-        } else {
+            String flight = landingQueue.remove();
+            System.out.println("Landing " + flight);
+        } else if
+        (!takeoffQueue.isEmpty())
+        {
+            String flight = takeoffQueue.remove();
+            System.out.println("Taking off " + flight);
+        } else
+        {
             System.out.println("No planes waiting.");
         }
     }
