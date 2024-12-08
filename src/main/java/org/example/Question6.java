@@ -2,8 +2,11 @@ package org.example;
 
 // Reference
 // https://github.com/logued/oop-priority-queue-demo/blob/master/src/main/java/dkit/oop/MainApp.java
+// https://github.com/logued/oop-queue-linkedlist/blob/master/src/main/java/dkit/oop/App.java
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  *  Name: Sahil Samuel
@@ -12,6 +15,8 @@ import java.util.PriorityQueue;
 
 public class Question6      // Flight take-off (Queue)
 {
+
+    Queue<String> takeoffQueue = new LinkedList<>();
     public static void main(String[] args)
     {
         takeoff("TK1212");
