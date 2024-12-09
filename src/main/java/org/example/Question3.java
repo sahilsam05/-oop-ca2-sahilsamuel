@@ -24,9 +24,13 @@ filename: name of the file to test.
         {
             String tag = keyboard.next();
 
-            if (isOpeningTag(tag))
+            if (tag != null && tag.matches("<(p|ul|li)>"));
             {
-
+                stack.push(tag);
+            }
+            if (tag != null && tag.matches("</(p|ul|li)>"))
+            {
+                if (stack.isEmpty()) ||
             }
         }
         return false;
