@@ -17,6 +17,6 @@ public class Question9 {
         String equation;
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter equation");
-        equation = in.nextLine().trim();s
+        equation = in.nextLine().trim();
     }
 }

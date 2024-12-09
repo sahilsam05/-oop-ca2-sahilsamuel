@@ -23,6 +23,7 @@ public class Question7  // Shares Tax Calculations (Queue)
      */
     public static void main(String[] args)
     {
+        System.out.print("Enter command (buy/sell/quit): ");
         Queue<Block> shares = new LinkedList<>();
        Scanner in = new Scanner(System.in);
         String command="";
