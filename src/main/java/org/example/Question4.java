@@ -2,6 +2,7 @@ package org.example;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * Name: Sahil Samuel
@@ -11,39 +12,55 @@ import java.util.Scanner;
 public class Question4  // Flood Fill (Stack, 2D Array)
 {
 
-    public static void main(String[] args) {
-        System.out.println("Question 4. Floodfill algorithm.");
+    public static void main(String[] args)
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter the starting row (0-9): ");
+        int startRow = keyboard.nextInt();
+        System.out.println("Enter the starting column (0-9): ");
+        int startCol = keyboard.nextInt();
 
-        // Starter matrix (2D Array) with 0 representing an empty cell,
-        // and -1 representing a wall. Flood fill can not cross through
-        // a wall ( and not pass through diagionally).
-        //
-        int[][] matrix = new int[ROWS][COLUMNS]; // 2D Array of int
-        // define values for each row, -1 to prevent change
-        matrix[0] = new int[]{ 0, 0, -1, -1, 0};
-        matrix[1] = new int[]{ 0, 0, -1, -1, 0};
-        matrix[2] = new int[]{-1, 0,  0,  0, 0};
-        matrix[3] = new int[]{-1, 0, -1, -1, 0};
-        matrix[4] = new int[]{ 0,-1, -1,  0, 0};
+        int[][] grid = new int[10][10]; // 10×10 grid initialized to 0
+        Stack<cell> stack = new Stack<>();
+        Scanner scanner = new Scanner(System.in);
 
-        display(matrix);
 
-    }
+        stack.push(new cell(startRow, startCol)); // Push the starting cell onto the stack
+        int fillNumber = 1; // Start filling with 1
 
-    /*
-        Helper function to display the 2D Array
-     */
-    public static void display(int[][] arr) {
-        for (int x = 0; x < ROWS; x++) {
-            for (int y = 0; y < COLUMNS; y++) {
-                System.out.printf("%4d", arr[x][y]);
+        while (!stack.isEmpty()) {
+            // Pop the cell from the stack
+            cell current = stack.pop();
+            int row = current.row;
+            int col = current.column;
+
+            // If the cell is unfilled, fill it and push its unfilled neighbors
+            if (grid[row][col] == 0) {
+                grid[row][col] = fillNumber++;
+
+                // Check and push unfilled neighbors (north, east, south, west)
+                if (row > 0 && grid[row - 1][col] == 0) { // North
+                    stack.push(new cell(row - 1, col));
+                }
+                if (col < 9 && grid[row][col + 1] == 0) { // East
+                    stack.push(new cell(row, col + 1));
+                }
+                if (row < 9 && grid[row + 1][col] == 0) { // South
+                    stack.push(new cell(row + 1, col));
+                }
+                if (col > 0 && grid[row][col - 1] == 0) { // West
+                    stack.push(new cell(row, col - 1));
+                }
+            }
+        }
+
+        // Print the filled grid
+        System.out.println("Flood-filled grid:");
+        for (int[] row : grid) {
+            for (int cell : row) {
+                System.out.printf("%3d", cell);
             }
             System.out.println();
         }
     }
-
-    private static void floodFill(int r, int c, int[][] arr) {
-
-    }
-
 }

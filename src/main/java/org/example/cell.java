@@ -1,3 +1,4 @@
+package org.example;
 
 public class cell
 {
@@ -11,6 +12,3 @@ public class cell
         this.column = column;
     }
 }
-
-
-
