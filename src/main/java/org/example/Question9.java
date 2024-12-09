@@ -1,5 +1,8 @@
 package org.example;
 
+
+// References
+// Book Extract - Stack for Arithmentic Expression Eval and Maze Backtracking (1)
 import java.util.Scanner;
 /**
  *  Name:
