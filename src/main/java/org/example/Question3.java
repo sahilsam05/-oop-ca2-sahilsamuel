@@ -14,50 +14,48 @@ public class Question3  {   //Nested HTML (Stack)
     /*
 filename: name of the file to test.
 */
-    public static boolean validate(String filename) throws FileNotFoundException
-    {
+    //refernce for the HTML Tag Matching Logic GeeksforGeeks. (n.d.). Check for balanced parentheses in an expression. Retrieved from GeeksforGeeks
+
+    public static boolean isProperlyNested(String filePath) {
         Stack<String> stack = new Stack<>();
-        Scanner keyboard = new Scanner(new File(filename));
+        String selfClosingTag = "<br>";
 
+        try (Scanner scanner = new Scanner(new File(filePath))) {
+            while (scanner.hasNext()) {
+                String tag = scanner.next();
 
-        while (keyboard.hasNext())
-        {
-            String tag = keyboard.next();
-
-            if (tag != null && tag.matches("<(p|ul|li)>"));
-            {
-                stack.push(tag);
+                if (tag.equals(selfClosingTag)) {
+                    continue; // Ignore self-closing tag <br>
+                } else if (tag.startsWith("</")) {
+                    // Handle closing tag
+                    if (stack.isEmpty()) {
+                        return false; // No opening tag to match
+                    }
+                    String openingTag = stack.pop();
+                    if (!tag.equals("</" + openingTag.substring(1))) {
+                        return false; // Mismatched tags
+                    }
+                } else {
+                    // Handle opening tag
+                    stack.push(tag);
+                }
             }
-            if (tag != null && tag.matches("</(p|ul|li)>"))
-            {
-                if (stack.isEmpty()) ||
-            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + filePath);
+            return false;
         }
-        return false;
+
+        return stack.isEmpty(); // True if all tags are matched
     }
 
-    /*
-        This function tests the files in the files array to see if
-         they are valid.
-         tags_valid.txt should return true;
-         tags_invalid.txt should output as invalid;
-
-
-     */
-    public static void main(String[] args) throws FileNotFoundException {
-        String[] files = {"tags_valid.txt", "tags_invalid.txt"};
-        for(String fName: files) {
-            System.out.print(fName +": ");
-            if (validate(fName)) {
-                System.out.println("This file is valid");
-            } else {
-                System.out.println("This file is invalid");
-            }
+    public static void main(String[] args) {
+        String filePath = "Question_3/tags"; // Specify your file path here
+        if (isProperlyNested(filePath)) {
+            System.out.println("The tags are properly nested.");
+        } else {
+            System.out.println("The tags are not properly nested.");
         }
     }
-
-
-
 }
 
 
