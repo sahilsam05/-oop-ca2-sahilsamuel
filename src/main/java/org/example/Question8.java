@@ -2,8 +2,8 @@ package org.example;
 
 import java.util.*;
 /**
- *  Name:
- *  Class Group:
+ *  Name: Sahil Samuel
+ *  Class Group: SD2A
  */
 public class Question8  // Multi-company (Queue)
 {
@@ -18,6 +18,7 @@ public class Question8  // Multi-company (Queue)
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
+        Map<String, Queue<Block>> stockMap = new HashMap<String, Queue<Block>>();
         String command="";
         do {
             System.out.print(">");

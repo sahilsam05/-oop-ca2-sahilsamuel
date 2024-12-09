@@ -29,8 +29,6 @@ public class Question6      // Flight take-off (Queue)
         airport.next();
     }
 
-
-
     public void takeoff(String flightCode)
     {
         takeoffQueue.add(flightCode);
